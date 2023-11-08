@@ -3,14 +3,15 @@
   "type": "module",
   "scripts": {
     "start": "bun run --bun server/index.js",
-    "dev": "concurrently --kill-others 'bun build:css --watch' 'bun start'",
-    "build:css": "unocss",
-    "build:css:prod": "bun run build:css --minify"
+    "dev": "concurrently --kill-others 'unocss --watch' 'bun start --watch'",
+    "build:css": "unocss && curl https://necolas.github.io/normalize.css/8.0.1/normalize.css >> static/style.css",
+    "build:css:prod": "bun run build:css && cleancss -o static/style.css static/style.css"
   },
   "dependencies": {
     "hono": "latest"
   },
   "devDependencies": {
+    "clean-css-cli": "latest",
     "concurrently": "latest",
     "unocss": "latest"
   }
