@@ -3,8 +3,8 @@
   "type": "module",
   "scripts": {
     "start": "bun run --bun server/index.js",
-    "dev": "concurrently --kill-others 'bun run build:css --watch' 'bun run start'",
-    "build:css": "tailwindcss -i ./tailwind.css -o ./static/style.css",
+    "dev": "concurrently --kill-others 'bun build:css --watch' 'bun start'",
+    "build:css": "unocss",
     "build:css:prod": "bun run build:css --minify"
   },
   "dependencies": {
@@ -12,6 +12,6 @@
   },
   "devDependencies": {
     "concurrently": "latest",
-    "tailwindcss": "latest"
+    "unocss": "latest"
   }
 }

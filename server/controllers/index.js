@@ -1,5 +1,5 @@
 import { Controller, html } from '../hono.js'
-import { Layout } from './layout.js'
+import { Layout } from '../layout.js'
 
 /** @typedef {import('../hono.js').Handler} Handler */
 /** @typedef {import('../hono.js').Routes} Routes */

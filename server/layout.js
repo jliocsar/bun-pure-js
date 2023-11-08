@@ -1,4 +1,4 @@
-import { html } from '../hono.js'
+import { html } from './hono.js'
 
 /**
  * @typedef {{
@@ -30,7 +30,7 @@ export function Layout(/** @type {TProps} */ props) {
         <link rel="stylesheet" href="static/style.css" />
         <title>${props.title || 'Hono'}</title>
       </head>
-      <body>
+      <body class="m-0">
         ${props.content}
       </body>
     </html>
