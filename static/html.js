@@ -15,16 +15,16 @@ export function def(Element, options) {
 export function html(parts, ...values) {
   const totalParts = parts.length
   let markup = ''
-  let index = 0
+  let idx = 0
   do {
-    const part = parts[index]
-    const value = values[index]
+    const part = parts[idx]
+    const value = values[idx]
     if (value) {
       markup += part + value
     } else {
       markup += part
     }
-    index++
-  } while (index < totalParts)
+    idx++
+  } while (idx < totalParts)
   return markup
 }

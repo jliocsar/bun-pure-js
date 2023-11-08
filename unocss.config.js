@@ -1,7 +1,7 @@
-import { defineConfig, presetUno } from 'unocss'
+import { defineConfig, presetTypography, presetUno } from 'unocss'
 
 export default defineConfig({
-  presets: [presetUno()],
+  presets: [presetUno(), presetTypography()],
   cli: {
     entry: {
       outFile: 'static/style.css',
