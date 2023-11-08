@@ -1,7 +1,18 @@
-import { defineConfig, presetTypography, presetUno } from 'unocss'
+import { defineConfig, presetUno, presetWebFonts } from 'unocss'
 
 export default defineConfig({
-  presets: [presetUno(), presetTypography()],
+  presets: [
+    presetUno({
+      dark: 'class',
+    }),
+    presetWebFonts({
+      provider: 'google',
+      fonts: {
+        sans: 'Roboto',
+        mono: ['Fira Code'],
+      },
+    }),
+  ],
   cli: {
     entry: {
       outFile: 'static/style.css',

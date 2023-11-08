@@ -50,7 +50,7 @@ function build() {
   })
   spawned.stdout.on('data', async buffer => {
     const data = buffer.toString()
-    if (/(changes?|production)/i.test(data)) {
+    if (/(change[sd]?|production)/i.test(data)) {
       process.nextTick(applyNormalize)
     }
     process.stdout.write(data)
