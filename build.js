@@ -3,12 +3,11 @@ import * as childProcess from 'node:child_process'
 import * as fs from 'node:fs'
 
 const isWatching = process.argv.includes('--watch')
-const stylesCssPath = path.resolve(import.meta.dir, 'static/style.css')
+const stylesCssPath = path.resolve(__dirname, 'static/style.css')
 const normalizePath = '/tmp/_normalize.css'
-const normalizeFile = Bun.file(normalizePath)
 let normalize = ''
 
-function logInfo(message) {
+function logInfo(/** @type {string} */ message) {
   process.stdout.write('\x1b[34mℹ\x1b[0m ' + message + '\n')
 }
 
@@ -17,8 +16,8 @@ async function applyNormalize() {
   const unocss = fs.readFileSync(stylesCssPath, {
     encoding: 'utf-8',
   })
-  if (fs.existsSync(normalizePath) && normalize.length === 0) {
-    normalize = await normalizeFile.text()
+  if (fs.existsSync(normalizePath)) {
+    normalize = fs.readFileSync(normalizePath, 'utf-8')
   } else {
     normalize = childProcess.spawnSync(
       'curl',
@@ -28,7 +27,7 @@ async function applyNormalize() {
       },
     ).stdout
   }
-  await Bun.write(stylesCssPath, normalize + '\n' + unocss)
+  fs.writeFileSync(stylesCssPath, normalize + '\n' + unocss)
   logInfo('Done!')
 }
 
@@ -38,23 +37,22 @@ function build() {
       ? 'Starting \x1b[33munocss\x1b[0m in watch mode...'
       : 'Building CSS for production...',
   )
-  const spawned = childProcess.spawn(
-    'bunx',
-    ['unocss', isWatching ? '--watch' : ''],
-    {
-      encoding: 'utf-8',
-    },
-  )
+  const spawned = childProcess.spawn('bunx', [
+    'unocss',
+    isWatching ? '--watch' : '',
+  ])
   process.on('exit', () => {
     spawned.kill()
   })
-  spawned.stdout.on('data', async buffer => {
-    const data = buffer.toString()
-    if (/(change[sd]?|production)/i.test(data)) {
-      process.nextTick(applyNormalize)
-    }
-    process.stdout.write(data)
-  })
+  if (spawned.stdout) {
+    spawned.stdout.on('data', async (/** @type {Buffer} */ buffer) => {
+      const data = buffer.toString()
+      if (/(change[sd]?|generated)/i.test(data)) {
+        process.nextTick(applyNormalize)
+      }
+      process.stdout.write(data)
+    })
+  }
 }
 
 build()

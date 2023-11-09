@@ -1,9 +1,10 @@
 /**
- * @typedef {<T extends { name: string }, _N extends T['name'] = T['name'], O extends ElementDefinitionOptions = ElementDefinitionOptions>(Element: T, options?: O) => void} TDefine
- * */
-/**
  * Alias typed version of `customElements.define`
- * @type {TDefine}
+ * @type {<
+ *  E extends CustomElementConstructor & { tag: string },
+ *  _T extends E['tag'] = E['tag'],
+ *  O extends ElementDefinitionOptions = ElementDefinitionOptions
+ * >(Element: E, options?: O) => void}
  * */
 export function def(Element, options) {
   if (!('name' in Element)) {
@@ -12,6 +13,12 @@ export function def(Element, options) {
   customElements.define(Element.name, Element, options)
 }
 
+/**
+ * @type {<
+ *  TParts extends TemplateStringsArray = TemplateStringsArray,
+ *  TValues extends unknown[] = unknown[]
+ * >(parts: TParts, ...values: TValues) => string}
+ * */
 export function html(parts, ...values) {
   const totalParts = parts.length
   let markup = ''

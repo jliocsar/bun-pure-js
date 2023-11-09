@@ -1,22 +1,19 @@
-import { Controller, html } from '../hono.js'
+import * as H from '../hono.js'
 import { Layout } from '../layout.js'
 
-/** @typedef {import('../hono.js').Routes} Routes */
-/** @typedef {import('../hono.js').Handler} Handler */
-
-export class FourOhFour extends Controller {
-  /** @type {Routes} */
+export class FourOhFour extends H.Controller {
+  /** @type {H.TRoutes} */
   routes(app) {
     app.get('*', this.#index)
   }
 
-  /** @type {Handler} */
+  /** @type {H.THandler} */
   #index(ctx) {
     ctx.status(400)
     return ctx.html(
       Layout({
         title: '404',
-        content: html`
+        content: H.html`
           <h1>404</h1>
           <p>Page not found</p>
         `,

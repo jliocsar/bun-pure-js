@@ -1,7 +1,7 @@
 import { def, html } from '../html.js'
 
 export class MyComponent extends HTMLElement {
-  static name = /** @type {const} */ ('my-component')
+  static tag = /** @type {const} */ ('my-component')
 
   constructor() {
     super()

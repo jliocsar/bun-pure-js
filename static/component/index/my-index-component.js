@@ -1,7 +1,7 @@
 import { html, def } from '../../html.js'
 
 export class MyIndexComponent extends HTMLElement {
-  static name = /** @type {const} */ ('my-index-component')
+  static tag = /** @type {const} */ ('my-index-component')
 
   constructor() {
     super()
