@@ -2,12 +2,12 @@ import * as H from '../hono.js'
 import { Layout } from '../layout.js'
 
 export class FourOhFour extends H.Controller {
-  /** @type {H.TRoutes} */
+  /** @type {H.Routes} */
   routes(app) {
     app.get('*', this.#index)
   }
 
-  /** @type {H.THandler} */
+  /** @type {H.Handler} */
   #index(ctx) {
     ctx.status(400)
     return ctx.html(

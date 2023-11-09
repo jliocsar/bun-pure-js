@@ -2,14 +2,14 @@ import * as H from '../hono.js'
 import { Layout } from '../layout.js'
 
 export class Index extends H.Controller {
-  /** @type {H.TRoutes} */
+  /** @type {H.Routes} */
   routes(app) {
     app.get('/', this.#index)
     app.get('/fetch-db', this.#fetchDb)
     app.post('/click-me', this.#clickMe)
   }
 
-  /** @type {H.TAsyncHandler} */
+  /** @type {H.AsyncHandler} */
   async #index(ctx) {
     return ctx.html(
       Layout({
@@ -24,12 +24,12 @@ export class Index extends H.Controller {
     )
   }
 
-  /** @type {H.THandler} */
+  /** @type {H.Handler} */
   #clickMe(ctx) {
     return ctx.html(H.html`<p>cLICKED mA homie!!!</p>`)
   }
 
-  /** @type {H.TAsyncHandler} */
+  /** @type {H.AsyncHandler} */
   async #fetchDb(ctx) {
     const data = [
       {
