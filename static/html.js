@@ -1,21 +1,23 @@
 /**
+ * @typedef {<
+ *  TParts extends TemplateStringsArray = TemplateStringsArray,
+ *  TValues extends unknown[] = unknown[]
+ * >(parts: TParts, ...values: TValues) => string} HtmlTag
+ **/
+
+/**
  * Alias typed version of `customElements.define`
  * @type {<
  *  E extends CustomElementConstructor & { tag: string },
  *  _T extends E['tag'] = E['tag'],
  *  O extends ElementDefinitionOptions = ElementDefinitionOptions
  * >(Element: E, options?: O) => void}
- * */
+ */
 export function def(Element, options) {
   customElements.define(Element.tag, Element, options)
 }
 
-/**
- * @type {<
- *  TParts extends TemplateStringsArray = TemplateStringsArray,
- *  TValues extends unknown[] = unknown[]
- * >(parts: TParts, ...values: TValues) => string}
- * */
+/** @type {HtmlTag} */
 export function html(parts, ...values) {
   const totalParts = parts.length
   let markup = ''

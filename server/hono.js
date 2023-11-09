@@ -4,8 +4,8 @@ import { serveStatic } from 'hono/bun'
 /** @typedef {import('hono').Next} Next */
 /** @typedef {import('hono').Hono} App */
 /** @typedef {(app: App) => void} Routes */
-/** @typedef {(c: Context, next: Next) => Promise<Response>} AsyncHandler */
-/** @typedef {(c: Context, next: Next) => Response} Handler */
+/** @typedef {(ctx: Context, next: Next) => Promise<Response>} AsyncHandler */
+/** @typedef {(ctx: Context, next: Next) => Response} Handler */
 
 export { html } from '../static/html.js'
 
