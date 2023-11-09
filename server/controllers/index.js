@@ -15,8 +15,10 @@ export class Index extends H.Controller {
       Layout({
         script: 'index',
         content: H.html`
-          <my-component my-attr="420"></my-component>
-          <my-index-component></my-index-component>
+          <main class="flex flex-col bg-gray-700">
+            <my-component my-attr="420"></my-component>
+            <my-index-component></my-index-component>
+          </main>
         `,
       }),
     )

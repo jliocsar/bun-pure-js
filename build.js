@@ -11,11 +11,8 @@ function logInfo(/** @type {string} */ message) {
   process.stdout.write('\x1b[34mℹ\x1b[0m ' + message + '\n')
 }
 
-async function applyNormalize() {
+function applyNormalize() {
   logInfo('Applying \x1b[33mnormalize.css\x1b[0m')
-  const unocss = fs.readFileSync(stylesCssPath, {
-    encoding: 'utf-8',
-  })
   if (fs.existsSync(normalizePath)) {
     normalize = fs.readFileSync(normalizePath, 'utf-8')
   } else {
@@ -26,7 +23,11 @@ async function applyNormalize() {
         encoding: 'utf-8',
       },
     ).stdout
+    fs.writeFileSync(normalizePath, normalize)
   }
+  const unocss = fs.readFileSync(stylesCssPath, {
+    encoding: 'utf-8',
+  })
   fs.writeFileSync(stylesCssPath, normalize + '\n' + unocss)
   logInfo('Done!')
 }
@@ -44,13 +45,26 @@ function build() {
   process.on('exit', () => {
     spawned.kill()
   })
+  spawned.on('close', applyNormalize)
   if (spawned.stdout) {
     spawned.stdout.on('data', async (/** @type {Buffer} */ buffer) => {
       const data = buffer.toString()
-      if (/(change[sd]?|generated)/i.test(data)) {
-        process.nextTick(applyNormalize)
-      }
       process.stdout.write(data)
+    })
+  }
+  if (isWatching) {
+    const WATCH_INTERVAL = 100
+    /** @type {NodeJS.Timeout | null} */
+    let timeout
+    /** @type {number} */
+    let lastWrite = 0
+    fs.watchFile(stylesCssPath, { interval: WATCH_INTERVAL }, stats => {
+      if (!timeout && lastWrite + WATCH_INTERVAL * 5 < Date.now()) {
+        logInfo('CSS file changed, rebuilding...')
+        applyNormalize()
+        timeout = setTimeout(() => (timeout = null), WATCH_INTERVAL * 5)
+        lastWrite = stats.mtimeMs
+      }
     })
   }
 }

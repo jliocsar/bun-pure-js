@@ -7,7 +7,7 @@ import * as H from './hono.js'
 const app = new Hono()
 
 app.use('/static/*', serveStatic({ root: './' }))
-app.use('/favicon.ico', serveStatic({ path: './favicon.ico' }))
+app.use('/favicon.ico', serveStatic({ path: './static/favicon.ico' }))
 H.withControllers(app, [Index, FourOhFour])
 
 // apply 404 route

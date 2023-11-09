@@ -6,10 +6,10 @@ export class MyComponent extends HTMLElement {
   constructor() {
     super()
     this.innerHTML = html`
-      <div class="bg-gray-900 text-white p-2">
-        <h1>Hello ${this.innerHTML || 'world'}</h1>
+      <header class="bg-gray-900 text-white p-2">
+        <h1 class="font-sans">Hello ${this.innerText || 'world'}</h1>
         <button hx-post="/click-me" hx-swap="innerHTML">Click Me</button>
-      </div>
+      </header>
     `
   }
 }

@@ -1,7 +1,8 @@
-import { defineConfig, presetUno, presetWebFonts } from 'unocss'
+import { defineConfig, presetUno, presetWebFonts, presetWind } from 'unocss'
 
 export default defineConfig({
   presets: [
+    presetWind(),
     presetUno({
       dark: 'class',
     }),
