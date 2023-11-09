@@ -30,7 +30,7 @@ export function Layout(/** @type {TProps} */ props) {
             : null
         }
         <link rel="stylesheet" href="static/style.css" />
-        <title>${props.title || 'Hono'}</title>
+        <title>${props.title || 'Hono demo'}</title>
       </head>
       <body>
         ${props.content}

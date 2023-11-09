@@ -7,10 +7,7 @@
  * >(Element: E, options?: O) => void}
  * */
 export function def(Element, options) {
-  if (!('name' in Element)) {
-    throw new Error('Element must have a static name property')
-  }
-  customElements.define(Element.name, Element, options)
+  customElements.define(Element.tag, Element, options)
 }
 
 /**
