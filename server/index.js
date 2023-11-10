@@ -7,9 +7,13 @@ import * as H from './hono.js'
 
 const app = new Hono()
 
-app.use('/static/*', serveStatic({ root: './' }))
+app.use('/*', serveStatic({ root: './static' }))
 app.use('/favicon.ico', serveStatic({ path: './static/favicon.ico' }))
 H.withControllers(app, [Index, About, FourOhFour])
 app.get('*', H.serveStaticPage('404.html'))
+
+if (process.env.NODE_ENV === 'development') {
+  console.info('Server started at http://localhost:3000')
+}
 
 export default app

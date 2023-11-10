@@ -38,5 +38,5 @@ export function withControllers(app, controllers) {
  * @param {string} path - Path to the page
  * */
 export function serveStaticPage(path) {
-  return serveStatic({ path: `./static/pages/${path}` })
+  return serveStatic({ path: `./pages/${path}` })
 }
