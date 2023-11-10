@@ -7,6 +7,7 @@ server/
 ├─ layout.js # HTMX layout for all pages
 ├─ index.js # Hono app entrypoint
 ├─ hono.js # Hono related utilities for route building
+├─ router.js # Router with all controllers
 ├─ controllers/
 │  ├─ page-controller.js # Handler returning a `Response` with html content
 static/
