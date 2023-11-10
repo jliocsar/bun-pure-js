@@ -18,6 +18,7 @@ class Builder {
   #normalize = new Normalize()
   #dirname = path.dirname(fileURLToPath(import.meta.url))
   #stylesCssPath = path.resolve(this.#dirname, 'static/style.css')
+  #watchInterval = 64
   isWatching = process.argv.includes('--watch')
 
   async readStylesFileHead(bytes = NORMALIZE_INITIAL_BUFFER_BYTES_SIZE) {
@@ -57,6 +58,7 @@ class Builder {
 
   applyNormalize() {
     this.logInfo('Applying \x1b[33mnormalize.css\x1b[0m')
+    const unocssContent = fs.readFileSync(this.#stylesCssPath, 'utf-8')
     fs.writeFileSync(
       this.#stylesCssPath,
       this.#normalize.content + '\n' + unocssContent,
@@ -66,14 +68,18 @@ class Builder {
 
   watchStylesChanges() {
     let first = true
-    fs.watchFile(this.#stylesCssPath, { interval: 128 }, async stats => {
-      const head = await this.readStylesFileHead()
-      if (first || Buffer.compare(head, this.#normalize.firstChunks) !== 0) {
-        this.logInfo('CSS file changed, rebuilding...')
-        this.applyNormalize()
-        first = false
-      }
-    })
+    fs.watchFile(
+      this.#stylesCssPath,
+      { interval: this.#watchInterval },
+      async stats => {
+        const head = await this.readStylesFileHead()
+        if (first || Buffer.compare(head, this.#normalize.firstChunks) !== 0) {
+          this.logInfo('CSS file changed, rebuilding...')
+          this.applyNormalize()
+          first = false
+        }
+      },
+    )
   }
 
   logInfo(/** @type {string} */ message) {
@@ -84,8 +90,6 @@ class Builder {
     process.stdout.write('\x1b[31m✘\x1b[0m ' + message + '\n')
   }
 }
-
-let unocssContent = ''
 
 function build() {
   const builder = new Builder()
