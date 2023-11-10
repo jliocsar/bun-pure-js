@@ -9,6 +9,27 @@ import { serveStatic } from 'hono/bun'
 
 export { html } from '../static/html.js'
 
+export class Router {
+  /** @type {(new () => Controller)[]} */
+  #controllers = []
+
+  constructor(/** @type {(new () => Controller)[]} */ controllers) {
+    this.#controllers = controllers
+  }
+
+  /**
+   * Decorates the Hono app with controllers
+   * @param {App} app - Hono instance
+   * @returns Decorated app
+   */
+  applyRoutes(app) {
+    for (const Controller of this.#controllers) {
+      new Controller().routes(app)
+    }
+    return app
+  }
+}
+
 export class Controller {
   /**
    * Applies routes to the Hono app
@@ -18,19 +39,6 @@ export class Controller {
   routes(_app) {
     throw new Error('routes() must be implemented!')
   }
-}
-
-/**
- * Decorates the Hono app with controllers
- * @param {App} app - Hono instance
- * @param {(new () => Controller)[]} controllers - List of controllers
- * @returns Decorated app
- */
-export function withControllers(app, controllers) {
-  for (const Controller of controllers) {
-    new Controller().routes(app)
-  }
-  return app
 }
 
 /**

@@ -1,16 +1,14 @@
 import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
-import { Index } from './controllers/index.js'
-import { About } from './controllers/about.js'
-import { FourOhFour } from './controllers/404.js'
-import * as H from './hono.js'
+import { serveStaticPage } from './hono.js'
+import { router } from './router.js'
 
 const app = new Hono()
 
 app.use('/*', serveStatic({ root: './static' }))
 app.use('/favicon.ico', serveStatic({ path: './static/favicon.ico' }))
-H.withControllers(app, [Index, About, FourOhFour])
-app.get('*', H.serveStaticPage('404.html'))
+router.applyRoutes(app)
+app.get('*', serveStaticPage('404.html'))
 
 if (process.env.NODE_ENV === 'development') {
   console.info('Server started at http://localhost:3000')
