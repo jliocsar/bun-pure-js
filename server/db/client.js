@@ -9,11 +9,11 @@ if (!uri) {
   process.exit(1)
 }
 
-export const client = new MongoClient(uri, {
+export const client = await new MongoClient(uri, {
   appName: process.env.package_name,
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
     deprecationErrors: true,
   },
-})
+}).connect()

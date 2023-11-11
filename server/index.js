@@ -6,7 +6,7 @@ import { client } from './db/client.js'
 
 const app = new Hono()
 
-app.use('/*', serveStatic({ root: './static' }))
+app.use('/static/*', serveStatic({ root: './' }))
 app.use('/favicon.ico', serveStatic({ path: './static/favicon.ico' }))
 router.applyRoutes(app)
 app.get('*', serveStaticPage('404.html'))

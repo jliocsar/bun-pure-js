@@ -1,5 +1,6 @@
-import * as H from '../hono.js'
+import { client } from '../db/client.js'
 import { Layout } from '../layout.js'
+import * as H from '../hono.js'
 
 export class Index extends H.Controller {
   /** @type {H.Routes} */
@@ -18,6 +19,7 @@ export class Index extends H.Controller {
           <main class="flex flex-col bg-gray-700">
             <my-component my-attr="420"></my-component>
             <my-index-component></my-index-component>
+            <div hx-get="/fetch-db" hx-trigger="load" hx-swap="outerHTML"></div>
           </main>
         `,
       }),
@@ -31,12 +33,12 @@ export class Index extends H.Controller {
 
   /** @type {H.AsyncHandler} */
   async #fetchDb(ctx) {
-    const data = [
-      {
-        id: 1,
-        name: 'JC',
-      },
-    ]
-    return ctx.html(H.html`<p>${JSON.stringify(data)}</p>`)
+    const tenant = ctx.req.header('x-tenant') ?? 'default'
+    const thingies = await client
+      .db(tenant)
+      .collection('thingies')
+      .find()
+      .toArray()
+    return ctx.html(H.html`<p>${JSON.stringify(thingies)}</p>`)
   }
 }

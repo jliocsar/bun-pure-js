@@ -19,17 +19,17 @@ export function Layout(/** @type {TProps} */ props) {
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script defer src="https://unpkg.com/htmx.org"></script>
-        <script defer type="module" src="app.js"></script>
+        <script defer type="module" src="static/app.js"></script>
         ${
           props.script
             ? H.html`<script
                 defer
                 type="module"
-                src="pages/${props.script}.js"
+                src="static/pages/${props.script}.js"
               ></script>`
             : null
         }
-        <link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="static/style.css" />
         <title>${props.title || 'Hono demo'}</title>
       </head>
       <body>

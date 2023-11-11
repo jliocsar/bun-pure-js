@@ -1,5 +1,3 @@
-/// <reference types="bun-types" />
-
 import * as path from 'node:path'
 import * as fs from 'node:fs'
 

@@ -2,11 +2,11 @@
   "name": "pure-js",
   "type": "module",
   "scripts": {
-    "start": "bun run --bun server/index.js",
-    "dev": "concurrently --kill-others -c cyanBright -p '[{command}]' -l 80 'bun dev:css' 'bun start --watch'",
+    "start": "bun build:css:prod && bun run --bun server/index.js",
+    "dev": "concurrently --kill-others -c cyanBright -p '[{command}]' -l 80 'bun dev:css' 'bun run --bun server/index.js --watch'",
     "dev:css": "concurrently --kill-others -c magentaBright -p '[{command}]' -l 80 'unocss --watch' 'bun normalize:css --watch'",
     "normalize:css": "bun run --bun watch.js",
-    "normalize:css:prod": "unocss && bun run normalize:css && cleancss -o static/style.css static/style.css"
+    "build:css:prod": "unocss && bun run normalize:css && cleancss -o static/style.css static/style.css"
   },
   "dependencies": {
     "hono": "latest",
