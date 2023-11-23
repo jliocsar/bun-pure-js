@@ -2,7 +2,7 @@ import { Hono } from 'hono'
 import { serveStatic } from 'hono/bun'
 import { serveStaticPage } from './hono.js'
 import { router } from './router.js'
-import { client } from './db/client.js'
+// import { client } from './db/client.js'
 
 const app = new Hono()
 

@@ -13,9 +13,7 @@ export class About extends H.Controller {
       Layout({
         title: 'About',
         content: H.html`
-          <main class="flex flex-col bg-gray-700">
-            About
-          </main>
+          <main>About</main>
         `,
       }),
     )

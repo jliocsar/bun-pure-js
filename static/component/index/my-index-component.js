@@ -5,9 +5,7 @@ export class MyIndexComponent extends HTMLElement {
 
   constructor() {
     super()
-    this.innerHTML = html`
-      <p class="font-sans">This is an ${'index'} only component.</p>
-    `
+    this.innerHTML = html` <p>This is an ${'index'} only component.</p> `
   }
 }
 

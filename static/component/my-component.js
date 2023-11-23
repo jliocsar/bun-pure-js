@@ -7,8 +7,8 @@ export class MyComponent extends HTMLElement {
     super()
     const attr = this.getAttribute('my-attr')
     this.innerHTML = html`
-      <header class="bg-gray-900 text-white p-2">
-        <h1 class="font-sans">Hello ${attr || 'world'}</h1>
+      <header>
+        <h1>Hello ${attr || 'world'}</h1>
         <button hx-post="/click-me" hx-swap="innerHTML">Click Me</button>
       </header>
     `

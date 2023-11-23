@@ -16,7 +16,7 @@ export class Index extends H.Controller {
       Layout({
         script: 'index',
         content: H.html`
-          <main class="flex flex-col bg-gray-700">
+          <main>
             <my-component my-attr="420"></my-component>
             <my-index-component></my-index-component>
             <div hx-get="/fetch-db" hx-trigger="load" hx-swap="outerHTML"></div>
