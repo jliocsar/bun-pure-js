@@ -1,8 +1,8 @@
 FROM oven/bun:latest AS jliocsar
-WORKDIR /app
-COPY package.json ./
+COPY package.json jsconfig.json ./
 COPY bun.lockb ./
-COPY server static ./
+COPY server ./server
+COPY static ./static
 RUN bun i
 EXPOSE 3000
 CMD ["bun", "start"]
