@@ -5,13 +5,14 @@ import * as H from '../hono.js'
 export class Index extends H.Controller {
   /** @type {H.Routes} */
   routes(app) {
-    app.get('/', this.#index)
-    app.get('/fetch-db', this.#fetchDb)
-    app.post('/click-me', this.#clickMe)
+    app.get('/', this.#index.bind(this))
+    app.post('/click-me', this.#clickMe.bind(this))
   }
 
   /** @type {H.AsyncHandler} */
   async #index(ctx) {
+    const tenant = ctx.req.header('x-tenant') ?? 'default'
+    const thingies = await this.#listThingies(tenant)
     return ctx.html(
       Layout({
         script: 'index',
@@ -19,7 +20,9 @@ export class Index extends H.Controller {
           <main>
             <my-component my-attr="420"></my-component>
             <my-index-component></my-index-component>
-            <div hx-get="/fetch-db" hx-trigger="load" hx-swap="outerHTML"></div>
+            <ul>
+              ${thingies.map(thingy => H.html`<li>${thingy.name}</li>`)}
+            </ul>
           </main>
         `,
       }),
@@ -31,14 +34,12 @@ export class Index extends H.Controller {
     return ctx.html(H.html`<p>cLICKED mA homie!!!</p>`)
   }
 
-  /** @type {H.AsyncHandler} */
-  async #fetchDb(ctx) {
-    const tenant = ctx.req.header('x-tenant') ?? 'default'
+  async #listThingies(/** @type {string} */ tenant) {
     const thingies = await client
       .db(tenant)
       .collection('thingies')
       .find()
       .toArray()
-    return ctx.html(H.html`<p>${JSON.stringify(thingies)}</p>`)
+    return thingies
   }
 }

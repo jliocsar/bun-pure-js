@@ -1,0 +1,69 @@
+:root {
+  --primary: #0070f3;
+  --secondary: #ff0080;
+  --background: #f1f1f1;
+  --background-dark: #111;
+  --background-light: #fff;
+  --text: #333;
+  --text-light: #666;
+  --text-dark: #000;
+  --link: #0070f3;
+  --link-hover: #0366d6;
+  --border: #eaeaea;
+  --border-dark: #888;
+  --border-light: #eaeaea;
+  --border-lighter: #fafafa;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #111;
+    --background-dark: #000;
+    --background-light: #222;
+    --text: #fff;
+    --text-light: #aaa;
+    --text-dark: #fff;
+    --link: #fff;
+    --link-hover: #fff;
+    --border: #444;
+    --border-dark: #666;
+    --border-light: #444;
+    --border-lighter: #333;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--text);
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--link-hover);
+}
+
+button {
+  line-height: 1.15;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  font-size: 100%;
+  font-family: inherit;
+  background: transparent;
+  cursor: pointer;
+  color: inherit;
+}
+
+input {
+  line-height: 1.15;
+  margin: 0;
+  font-size: 100%;
+  font-family: inherit;
+  color: inherit;
+}

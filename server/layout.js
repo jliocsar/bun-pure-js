@@ -4,6 +4,7 @@ import * as H from './hono.js'
  * @typedef {{
  *  content: string
  *  title?: string
+ *  style?: string
  *  script?: string
  * }} TProps
  * */
@@ -18,8 +19,16 @@ export function Layout(/** @type {TProps} */ props) {
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script defer src="https://unpkg.com/htmx.org"></script>
-        <script defer type="module" src="static/app.js"></script>
+        <script type="module" src="static/app.js"></script>
+        <link rel="stylesheet" href="static/styles/global.css" />
+        ${
+          props.style
+            ? H.html`<link
+                rel="stylesheet"
+                href="static/styles/${props.style}.css"
+              />`
+            : null
+        }
         ${
           props.script
             ? H.html`<script
@@ -29,7 +38,6 @@ export function Layout(/** @type {TProps} */ props) {
               ></script>`
             : null
         }
-        <link rel="stylesheet" href="static/style.css" />
         <title>${props.title || 'Hono demo'}</title>
       </head>
       <body>

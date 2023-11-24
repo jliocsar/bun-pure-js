@@ -24,7 +24,8 @@ export class Router {
    */
   applyRoutes(app) {
     for (const Controller of this.#controllers) {
-      new Controller().routes(app)
+      const controller = new Controller()
+      controller.routes(app)
     }
     return app
   }

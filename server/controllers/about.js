@@ -4,7 +4,7 @@ import { Layout } from '../layout.js'
 export class About extends H.Controller {
   /** @type {H.Routes} */
   routes(app) {
-    app.get('/about', this.#index)
+    app.get('/about', this.#index.bind(this))
   }
 
   /** @type {H.Handler} */
