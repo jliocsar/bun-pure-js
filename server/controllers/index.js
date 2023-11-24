@@ -10,7 +10,7 @@ export class Index extends H.Controller {
     app.post('/click-me', this.#clickMe)
   }
 
-  /** @type {H.Handler} */
+  /** @type {H.AsyncHandler} */
   async #index(ctx) {
     return ctx.html(
       Layout({
@@ -31,7 +31,7 @@ export class Index extends H.Controller {
     return ctx.html(H.html`<p>cLICKED mA homie!!!</p>`)
   }
 
-  /** @type {H.Handler} */
+  /** @type {H.AsyncHandler} */
   async #fetchDb(ctx) {
     const tenant = ctx.req.header('x-tenant') ?? 'default'
     const thingies = await client
