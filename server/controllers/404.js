@@ -10,14 +10,11 @@ export class FourOhFour extends H.Controller {
   /** @type {H.Handler} */
   #index(ctx) {
     ctx.status(400)
-    return ctx.html(
-      Layout({
-        title: '404',
-        content: H.html`
-          <h1>404</h1>
-          <p>Page not found</p>
-        `,
-      }),
+    return ctx.render(
+      <Layout title="404">
+        <h1>404</h1>
+        <p>Page not found</p>
+      </Layout>,
     )
   }
 }

@@ -1,36 +1,68 @@
+@font-face {
+  font-family: Geist;
+  font-weight: 300;
+  font-display: swap;
+  src: url(/static/fonts/Geist/Geist-UltraLight.woff2) format("woff2"),
+    url(/static/fonts/Geist/Geist-UltraLight.woff) format("woff");
+}
+
+@font-face {
+  font-family: Geist;
+  font-weight: 400;
+  font-display: swap;
+  src: url(/static/fonts/Geist/Geist-Regular.woff2) format("woff2"),
+    url(/static/fonts/Geist/Geist-Regular.woff) format("woff");
+}
+
+@font-face {
+  font-family: Geist;
+  font-weight: 600;
+  font-display: swap;
+  src: url(/static/fonts/Geist/Geist-SemiBold.woff2) format("woff2"),
+    url(/static/fonts/Geist/Geist-SemiBold.woff) format("woff");
+}
+
+@font-face {
+  font-family: Geist;
+  font-weight: 800;
+  font-display: swap;
+  src: url(/static/fonts/Geist/Geist-Black.woff2) format("woff2"),
+    url(/static/fonts/Geist/Geist-Black.woff) format("woff");
+}
+
 :root {
   --primary: #0070f3;
   --secondary: #ff0080;
   --background: #f1f1f1;
-  --background-dark: #111;
-  --background-light: #fff;
   --text: #333;
   --text-light: #666;
   --text-dark: #000;
   --link: #0070f3;
   --link-hover: #0366d6;
-  --border: #eaeaea;
-  --border-dark: #888;
-  --border-light: #eaeaea;
-  --border-lighter: #fafafa;
+  --border: #888;
 }
 
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #111;
-    --background-dark: #000;
-    --background-light: #222;
+    --background: #000;
     --text: #fff;
     --text-light: #aaa;
     --text-dark: #fff;
-    --link: #fff;
-    --link-hover: #fff;
-    --border: #444;
-    --border-dark: #666;
-    --border-light: #444;
-    --border-lighter: #333;
+    --link: #157df5;
+    --link-hover: #70b3ff;
+    --border: #666;
   }
+}
+
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  line-height: 1.15;
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  font-family: Geist, serif;
 }
 
 body {
@@ -66,4 +98,49 @@ input {
   font-size: 100%;
   font-family: inherit;
   color: inherit;
+}
+
+h1 {
+  font-size: 2.8em;
+}
+
+h2 {
+  font-size: 1.8em;
+}
+
+p {
+  font-size: 1.2em;
+}
+
+footer {
+  text-align: center;
+  padding: 2em 0;
+}
+
+header {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer small {
+  font-size: 1em;
+  line-height: 1.2;
+  color: var(--text-light);
+}
+
+svg {
+  fill: currentColor;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 90dvw;
+  max-width: 800px;
+  height: 100%;
+  margin: 0 auto;
 }

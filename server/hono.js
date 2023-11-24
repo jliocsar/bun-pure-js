@@ -1,13 +1,18 @@
 import { serveStatic } from 'hono/bun'
 
-/** @typedef {import('hono').Context} Context */
-/** @typedef {import('hono').Next} Next */
-/** @typedef {import('hono').Hono} App */
-/** @typedef {(app: App) => void} Routes */
-/** @typedef {(ctx: Context, next: Next) => Response | Promise<Response>} Handler */
-/** @typedef {(ctx: Context, next: Next) => Promise<Response>} AsyncHandler */
-
-export { html } from '../static/html.js'
+/** hono types
+ * @typedef {import('hono').Next} Next
+ * @typedef {import('hono').Context} Context
+ * @typedef {import('hono').Hono} App
+ * @typedef {import('hono/jsx').Child} Child
+ * @typedef {(app: App) => void} Routes
+ * @typedef {(ctx: Context, next: Next) => Response | Promise<Response>} Handler
+ * @typedef {(ctx: Context, next: Next) => Promise<Response>} AsyncHandler
+ */
+/** hono/jsx types
+ * @typedef {P & { children?: Child[] }} PropsWithChild
+ * @template {Record<string, any>} P
+ */
 
 export class Router {
   /** @type {(new () => Controller)[]} */
