@@ -3,9 +3,9 @@ export function cache() {
 
   /** @type {import('hono').Handler} */
   return async (ctx, next) => {
-    // if (process.env.NODE_ENV === 'development') {
-    //   return next()
-    // }
+    if (process.env.NODE_ENV === 'development') {
+      return next()
+    }
     const key = ctx.req.url
     let response = cached.get(key)
     if (response) {

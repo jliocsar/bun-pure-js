@@ -97,6 +97,10 @@ export class Index extends H.Controller {
             created with{' '}
             <a target="_blank" href="https://hono.dev/">
               hono
+            </a>{' '}
+            &{' '}
+            <a target="_blank" href="https://bun.sh/">
+              bun
             </a>
           </small>
         </footer>

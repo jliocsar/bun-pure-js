@@ -24,7 +24,7 @@
   left: 0;
   display: block;
   position: absolute;
-  background-image: linear-gradient(90deg, transparent 90%, black);
+  background-image: linear-gradient(90deg, transparent 80%, var(--background));
 }
 
 .godrays {
@@ -125,6 +125,7 @@ ul li p {
 }
 
 header h1 {
+  font-size: 4.2em;
   margin-bottom: 0.4em;
 }
 
