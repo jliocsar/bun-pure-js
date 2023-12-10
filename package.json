@@ -10,7 +10,7 @@
     "bun-types": "latest"
   },
   "scripts": {
-    "start": "bun run --bun server/index.js",
-    "dev": "bun start --watch"
+    "start": "bun run -b server/index.js",
+    "dev": "bun run -b --watch server/index.js"
   }
 }

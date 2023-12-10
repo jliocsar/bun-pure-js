@@ -114,15 +114,7 @@ p {
 
 footer {
   text-align: center;
-  padding: 2em 0;
-}
-
-header {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 1.6rem 0 2rem 0;
 }
 
 footer small {
@@ -133,6 +125,11 @@ footer small {
 
 svg {
   fill: currentColor;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border);
 }
 
 .container {

@@ -6,7 +6,7 @@ import { Icon } from '../components/icon-component.js'
 export class Index extends H.Controller {
   /** @type {string} */
   #readme = ''
-  /** @type {{ icon: string; name: string; description: string; url: string; wip?: true }[]} */
+  /** @type {{ icon: string; name: string; description: Promise<string> | string; url: string; wip?: true }[]} */
   #projects = [
     {
       icon: '\ud83e\uddfc',
@@ -41,6 +41,17 @@ export class Index extends H.Controller {
       url: 'https://github.com/jliocsar/elizabeth',
       wip: true,
     },
+    {
+      icon: '\ud83c\udf14',
+      name: 'lua-htmx',
+      description: (
+        <>
+          Lua + HTMX powered by <a href="">libuv</a>.
+        </>
+      ),
+      url: 'https://github.com/jliocsar/lua-htmx',
+      wip: true,
+    },
   ]
 
   /** @type {H.Routes} */
@@ -54,33 +65,32 @@ export class Index extends H.Controller {
     return ctx.render(
       <Layout title="jliocsar" style="index">
         <header>
-          <div class="godrays-container">
-            <div class="godrays"></div>
-          </div>
           <h1>jliocsar</h1>
-          <nav>
-            <a
-              target="_blank"
-              href="https://github.com/jliocsar"
-              aria-label="link to github"
-            >
-              <Icon id="github" width={24} height={24} />
-            </a>
-            <a
-              target="_blank"
-              href="https://linkedin.com/in/jliocsar"
-              aria-label="link to linkedin profile"
-            >
-              <Icon id="linkedin" width={24} height={24} />
-            </a>
-          </nav>
         </header>
+        <hr />
         <main>
           <div dangerouslySetInnerHTML={{ __html: this.#readme }} />
+          <a
+            class="social-link"
+            target="_blank"
+            href="https://github.com/jliocsar"
+            aria-label="link to github"
+          >
+            <Icon id="github" width={18} height={18} />
+          </a>
+          <a
+            class="social-link"
+            target="_blank"
+            href="https://linkedin.com/in/jliocsar"
+            aria-label="link to linkedin profile"
+          >
+            <Icon id="linkedin" width={18} height={18} />
+          </a>
+          <hr class="invis" />
           <h2>Projects</h2>
           <ul>
             {this.#projects.map(project => (
-              <li>
+              <li class="project">
                 <div class="project-title">
                   <i>{project.icon}</i>
                   <a target="_blank" href={project.url}>
@@ -92,6 +102,8 @@ export class Index extends H.Controller {
             ))}
           </ul>
         </main>
+        <br />
+        <hr />
         <footer>
           <small>
             created with{' '}
