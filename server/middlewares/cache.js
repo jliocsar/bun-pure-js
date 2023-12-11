@@ -15,7 +15,7 @@ export function cache() {
     if (!ctx.res.ok) {
       return
     }
-    ctx.res.headers.set('Cache-Control', 'max-age=3600')
+    ctx.res.headers.set('Cache-Control', 'max-age=31536000, immutable')
     response = ctx.res.clone()
     cached.set(key, response)
   }

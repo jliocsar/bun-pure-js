@@ -61,3 +61,26 @@ hr.invis {
 .icon:hover {
   color: var(--text-light);
 }
+
+.wip {
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  user-select: none;
+  background-color: var(--wip);
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.2rem;
+  margin-left: 0.4rem;
+}
+
+.wip i {
+  font-size: 1rem;
+}
+
+.wip span {
+  font-weight: 600;
+  font-size: 0.8rem;
+  margin-left: 0.2rem;
+  line-height: 1.2;
+  color: var(--text-light);
+}

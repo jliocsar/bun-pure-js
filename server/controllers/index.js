@@ -2,6 +2,7 @@ import * as marked from 'marked'
 import { Layout } from '../layout.js'
 import * as H from '../hono.js'
 import { Icon } from '../components/icon-component.js'
+import { html } from '../middlewares/html.js'
 
 export class Index extends H.Controller {
   /** @type {string} */
@@ -56,7 +57,7 @@ export class Index extends H.Controller {
 
   /** @type {H.Routes} */
   routes(app) {
-    app.get('/', this.#index.bind(this))
+    app.get('/', html(), this.#index.bind(this))
   }
 
   /** @type {H.AsyncHandler} */
@@ -96,6 +97,12 @@ export class Index extends H.Controller {
                   <a target="_blank" href={project.url}>
                     {project.name}
                   </a>
+                  {project.wip ? (
+                    <span class="wip">
+                      <i>🚧</i>
+                      <span>WIP</span>
+                    </span>
+                  ) : null}
                 </div>
                 <p>{project.description}</p>
               </li>

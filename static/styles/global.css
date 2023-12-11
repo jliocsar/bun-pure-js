@@ -40,6 +40,7 @@
   --link: #0070f3;
   --link-hover: #0366d6;
   --border: #888;
+  --wip: #ccc;
 }
 
 
@@ -52,6 +53,7 @@
     --link: #157df5;
     --link-hover: #70b3ff;
     --border: #666;
+    --wip: #222;
   }
 }
 

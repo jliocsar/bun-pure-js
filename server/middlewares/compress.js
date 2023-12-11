@@ -1,4 +1,4 @@
-export function encoding(
+export function compress(
   /** @type {{ encoding: 'gzip' }} */ options = { encoding: 'gzip' },
 ) {
   /** @type {import('hono').Handler} */
