@@ -8,6 +8,7 @@ const app = new Hono()
 
 app.use('*', cache(), compress())
 app.use('/static/*', serveStatic({ root: './' }))
+app.use('/robots.txt', serveStatic({ path: './static/robots.txt' }))
 app.use('/favicon.ico', serveStatic({ path: './static/favicon.ico' }))
 router.applyRoutes(app)
 app.get('*', serveStaticPage('404.html'))
