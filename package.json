@@ -3,8 +3,7 @@
   "type": "module",
   "dependencies": {
     "hono": "latest",
-    "marked": "latest",
-    "mongodb": "latest"
+    "marked": "latest"
   },
   "peerDependencies": {
     "bun-types": "latest"
@@ -12,5 +11,8 @@
   "scripts": {
     "start": "bun run -b server/index.js",
     "dev": "bun run -b --watch server/index.js"
+  },
+  "devDependencies": {
+    "axe-core": "latest"
   }
 }

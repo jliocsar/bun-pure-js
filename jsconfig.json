@@ -1,4 +1,7 @@
 {
+  "include": [
+    "server/**/*"
+  ],
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
@@ -7,6 +10,9 @@
     "moduleResolution": "bundler",
     "strict": true,
     "allowJs": true,
-    "checkJs": true
+    "checkJs": true,
+    "types": [
+      "bun-types"
+    ]
   }
 }

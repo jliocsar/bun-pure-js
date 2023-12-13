@@ -1,59 +1,26 @@
-@font-face {
-  font-family: Geist;
-  font-weight: 300;
-  font-display: swap;
-  src: url(/static/fonts/Geist/Geist-UltraLight.woff2) format("woff2"),
-    url(/static/fonts/Geist/Geist-UltraLight.woff) format("woff");
-}
-
-@font-face {
-  font-family: Geist;
-  font-weight: 400;
-  font-display: swap;
-  src: url(/static/fonts/Geist/Geist-Regular.woff2) format("woff2"),
-    url(/static/fonts/Geist/Geist-Regular.woff) format("woff");
-}
-
-@font-face {
-  font-family: Geist;
-  font-weight: 600;
-  font-display: swap;
-  src: url(/static/fonts/Geist/Geist-SemiBold.woff2) format("woff2"),
-    url(/static/fonts/Geist/Geist-SemiBold.woff) format("woff");
-}
-
-@font-face {
-  font-family: Geist;
-  font-weight: 800;
-  font-display: swap;
-  src: url(/static/fonts/Geist/Geist-Black.woff2) format("woff2"),
-    url(/static/fonts/Geist/Geist-Black.woff) format("woff");
-}
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;900&display=swap');
 
 :root {
-  --primary: #0070f3;
-  --secondary: #ff0080;
+  --primary: hsl(220, 95%, 45%);
+  --secondary: hsl(320, 100%, 40%);
   --background: #f1f1f1;
   --text: #333;
   --text-light: #666;
-  --text-dark: #000;
-  --link: #0070f3;
-  --link-hover: #0366d6;
   --border: #888;
-  --wip: #ccc;
+  --wip: var(--text);
+  --wip-text: var(--background);
 }
 
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #000;
-    --text: #fff;
+  --primary: hsl(215, 100%, 55%);
+  --background: #0e0e0e;
+    --text: #f7f7f7;
     --text-light: #aaa;
-    --text-dark: #fff;
-    --link: #157df5;
-    --link-hover: #70b3ff;
     --border: #666;
     --wip: #222;
+    --wip-text: var(--text);
   }
 }
 
@@ -64,22 +31,28 @@ html {
   font-size: 16px;
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  font-family: Geist, serif;
+  font-family: Rubik, sans-serif;
+}
+
+*::selection {
+  background: var(--secondary);
+  color: var(--background);
 }
 
 body {
   margin: 0;
   background: var(--background);
   color: var(--text);
+  padding: 0 1.2rem;
 }
 
 a {
-  color: var(--link);
+  color: var(--primary);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--link-hover);
+  color: var(--secondary)
 }
 
 button {
@@ -138,8 +111,7 @@ hr {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 90dvw;
-  max-width: 800px;
+  max-width: 640px;
   height: 100%;
   margin: 0 auto;
 }

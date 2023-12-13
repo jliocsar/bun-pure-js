@@ -47,7 +47,11 @@ export class Index extends H.Controller {
       name: 'lua-htmx',
       description: (
         <>
-          Lua + HTMX powered by <a href="">libuv</a>.
+          Lua + HTMX powered by{' '}
+          <a target="_blank" href="https://github.com/luvit/luv">
+            libuv
+          </a>
+          .
         </>
       ),
       url: 'https://github.com/jliocsar/lua-htmx',
@@ -71,22 +75,25 @@ export class Index extends H.Controller {
         <hr />
         <main>
           <div dangerouslySetInnerHTML={{ __html: this.#readme }} />
-          <a
-            class="social-link"
-            target="_blank"
-            href="https://github.com/jliocsar"
-            aria-label="link to github"
-          >
-            <Icon id="github" width={18} height={18} />
-          </a>
-          <a
-            class="social-link"
-            target="_blank"
-            href="https://linkedin.com/in/jliocsar"
-            aria-label="link to linkedin profile"
-          >
-            <Icon id="linkedin" width={18} height={18} />
-          </a>
+          <section>
+            <i class="tree">🎄</i>{' '}
+            <a
+              class="social-link"
+              target="_blank"
+              href="https://github.com/jliocsar"
+              aria-label="link to github"
+            >
+              github
+            </a>
+            <a
+              class="social-link"
+              target="_blank"
+              href="https://linkedin.com/in/jliocsar"
+              aria-label="link to linkedin profile"
+            >
+              linkedin
+            </a>
+          </section>
           <hr class="invis" />
           <h2>Projects</h2>
           <ul>
